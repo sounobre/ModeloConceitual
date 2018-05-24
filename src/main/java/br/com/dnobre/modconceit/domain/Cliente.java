@@ -6,6 +6,7 @@
 package br.com.dnobre.modconceit.domain;
 
 import br.com.dnobre.modconceit.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -36,12 +37,17 @@ public class Cliente implements Serializable{
     private String cpfOuCnpj;
     private Integer tipo;
     
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
      
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
+    
+    public Cliente(){
+        
+    }
 
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
         this.id = id;

@@ -5,8 +5,8 @@
  */
 package br.com.dnobre.modconceit.resources;
 
-import br.com.dnobre.modconceit.domain.Categoria;
-import br.com.dnobre.modconceit.services.CategoriaService;
+import br.com.dnobre.modconceit.domain.Cliente;
+import br.com.dnobre.modconceit.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @author souno
  */
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoriaResource {
+@RequestMapping(value = "/clientes")
+public class ClienteResource {
     
     @Autowired
-    private CategoriaService service;
+    private ClienteService service;
     
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id){
         
-        Categoria obj = service.buscar(id);
+        Cliente obj = service.buscar(id);
         
         return ResponseEntity.ok().body(obj);
     }
