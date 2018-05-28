@@ -6,6 +6,7 @@
 package br.com.dnobre.modconceit.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -43,9 +44,11 @@ public class Produto implements Serializable{
     )
     private List<Categoria> categoria = new ArrayList<>();
     
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
     
+    @JsonIgnore
     public List<Pedido> getpedidos(){
         List<Pedido> lista = new ArrayList<>();
             for(ItemPedido x : itens){

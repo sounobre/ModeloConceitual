@@ -6,6 +6,7 @@
 package br.com.dnobre.modconceit.domain;
 
 import br.com.dnobre.modconceit.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 
@@ -17,8 +18,11 @@ import javax.persistence.Entity;
 public class PagamentoComBoleto extends Pagamento {
      private static final long serialVersionUID = 1L;
     
-    private Date dataVencimento;
-    private Date dataPagamento;
+     @JsonFormat(pattern = "dd/MM/yyyy")
+     private Date dataVencimento;
+     
+     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+     private Date dataPagamento;
 
     public PagamentoComBoleto() {
     }
