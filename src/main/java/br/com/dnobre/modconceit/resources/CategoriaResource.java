@@ -6,8 +6,12 @@
 package br.com.dnobre.modconceit.resources;
 
 import br.com.dnobre.modconceit.domain.Categoria;
+import br.com.dnobre.modconceit.dto.CategoriaDTO;
 import br.com.dnobre.modconceit.services.CategoriaService;
+import java.lang.reflect.Method;
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,4 +61,11 @@ public class CategoriaResource {
         return ResponseEntity.noContent().build();
     }
     
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> findAll(){
+        List<Categoria> list = service.findAll();
+        List<CategoriaDTO> listDTO = list.stream()
+                .map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
+    }
 }

@@ -9,6 +9,7 @@ import br.com.dnobre.modconceit.domain.Categoria;
 import br.com.dnobre.modconceit.repositories.CategoriaRepository;
 import br.com.dnobre.modconceit.services.exceptions.DataIntegrityException;
 import br.com.dnobre.modconceit.services.exceptions.ObjectNotFoundException;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -51,4 +52,8 @@ public class CategoriaService {
             throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
         }
     }
+        
+        public List<Categoria> findAll(){
+            return repo.findAll();
+        }
 }
